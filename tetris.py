@@ -10,25 +10,23 @@ class Tetris:
     def __init__(self, window_size):
         try:
             log_info("Inicializando jogo Tetris")
-            self.window = pg.display.set_mode((window_size * 14, window_size * 20))
+            self.window = pg.display.set_mode((window_size * 14, window_size * 20), pg.FULLSCREEN)
             pg.font.init()
             self.font = pg.font.SysFont("Courier New", window_size, bold=True)
             self.clock = pg.time.Clock()
             self.time = 0
 
-            self.black = (0,0,0)
+            self.black = (155, 103, 168)
             self.white = (255,255,255)
-            self.gray = (150,150,150)
+            self.gray = (117, 18, 62)
             
-            # Tons de roxo e rosa
-            self.roxo1 = (128, 0, 128)       # Roxo médio
-            self.rosa1 = (255, 182, 193)     # Rosa claro
-            self.roxo2 = (75, 0, 130)        # Índigo
-            self.rosa2 = (255, 105, 180)     # Rosa quente
-            self.roxo3 = (147, 112, 219)     # Roxo médio 2
-            self.rosa3 = (255, 20, 147)      # Rosa profundo
-            self.roxo4 = (186, 85, 211)      # Orquídea média
-
+            self.roxo1 = (128, 0, 128)
+            self.rosa1 = (255, 182, 193)  
+            self.roxo2 = (75, 0, 130)
+            self.rosa2 = (255, 105, 180)
+            self.roxo3 = (147, 112, 219)
+            self.rosa3 = (255, 20, 147)  
+            self.roxo4 = (186, 85, 211)     
             self.last_click_status = (False,False,False)
 
             self.starting_first_game = True
@@ -346,7 +344,7 @@ class Tetris:
 
     def restart_button(self, mouse):
         if self.show_restart_button:
-            c = (200, 100, 200)  # Cor roxa para o botão
+            c = (200, 100, 200)
             w = self.window.get_width()/2.5
             h = w/2.5
             x = self.window.get_width()/2 - w/2
@@ -399,15 +397,15 @@ def escolher_dificuldade(window):
         fonte_small = pg.font.SysFont("Arial", 25)
 
         while True:
-            window.fill((0,0,0))
+            window.fill((155, 103, 168))
 
-            titulo = fonte.render("Selecione a dificuldade", True, (255,255,255))
+            titulo = fonte.render("Selecione a dificuldade", True, (117, 18, 62))
             window.blit(titulo, (100, 80))
 
-            op1 = fonte_small.render("1 - Fácil", True, (255,255,255))
-            op2 = fonte_small.render("2 - Normal", True, (255,255,255))
-            op3 = fonte_small.render("3 - Difícil", True, (255,255,255))
-            op4 = fonte_small.render("4 - Insano", True, (255,255,255))
+            op1 = fonte_small.render("1 - Fácil", True, (117, 18, 62))
+            op2 = fonte_small.render("2 - Normal", True, (117, 18, 62))
+            op3 = fonte_small.render("3 - Difícil", True, (117, 18, 62))
+            op4 = fonte_small.render("4 - Insano", True, (117, 18, 62))
 
             window.blit(op1, (150, 180))
             window.blit(op2, (150, 220))
@@ -453,10 +451,10 @@ def menu_inicial():
         while True:
             tetris.clear_window()
 
-            titulo = fonte.render("TETRIS", True, (255, 255, 255))
-            iniciar = fonte_small.render("ENTER - Iniciar", True, (255,255,255))
-            sair = fonte_small.render("ESC - Sair", True, (255,255,255))
-            rank = fonte_small.render("R - Ranking", True, (255,255,255))
+            titulo = fonte.render("TETRIS", True, (117, 18, 62))
+            iniciar = fonte_small.render("ENTER - Iniciar", True, (117, 18, 62))
+            sair = fonte_small.render("ESC - Sair", True, (117, 18, 62))
+            rank = fonte_small.render("R - Ranking", True, (117, 18, 62))
 
             tetris.window.blit(titulo, (largura//2 - titulo.get_width()//2, 150))
             tetris.window.blit(iniciar, (largura//2 - iniciar.get_width()//2, 300))
@@ -491,7 +489,6 @@ def menu_inicial():
         raise
 
 
-# Cria instância do Tetris com tratamento de erro
 try:
     tetris = Tetris(42)
     log_info("Instância do Tetris criada com sucesso")
@@ -499,7 +496,6 @@ except Exception as e:
     log_error("Falha ao criar instância do Tetris", e)
     raise
 
-# Loop principal com tratamento de erro
 try:
     menu_inicial()
 
@@ -541,7 +537,6 @@ try:
             
         except Exception as e:
             log_error("Erro no loop principal do jogo", e)
-            # Continua executando para não crashar o jogo
 
 except Exception as e:
     log_error("Erro fatal no jogo", e)
