@@ -18,7 +18,7 @@ class Tetris:
 
             self.black = (155, 103, 168)
             self.white = (255,255,255)
-            self.gray = (117, 18, 62)
+            self.gray = (150,150,150)
             
             self.roxo1 = (128, 0, 128)
             self.rosa1 = (255, 182, 193)  
